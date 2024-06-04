@@ -8,3 +8,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>,
 )
+
+//https://ahmet-dogan-react-week1-assingment--ecommerceweek1.netlify.app
