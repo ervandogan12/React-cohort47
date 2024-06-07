@@ -1,0 +1,41 @@
+
+
+.profile-container {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.btn {
+  background-color: #bbdebc;
+  color: white;
+  padding: 14px 20px;
+  margin: 3px 25px;
+  border: rgb(230, 45, 45);
+  border-radius: 8px;
+  cursor: pointer;
+  width: 10%;
+  box-shadow: 3px 18px 25px rgba(0.1, 0, 0.1, 0.1);
+}
+.profile-details {
+  display: flex;
+  flex-direction: column;
+
+}
+.profile-details-changed {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.profile-details > * {
+  width: 100%;
+}
+
+.detail-label {
+  font-weight: bold;
+}
+
+.green {
+  background-color: green;
+}
