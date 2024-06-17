@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { DataContext } from "../context/DataContext"; 
 import heartSolid from "../assets/heart-solid.svg";
 import heartRegular from "../assets/heart-regular.svg";
+import { useFavorites } from "../context/FavoritesContext";
 
 export const Product = ({ product }) => {
-  const { favoriteIds, toggleFavorite } = useContext(DataContext);
+  const { favoriteIds, toggleFavorite } = useFavorites();
 
   const isFavorited = favoriteIds.includes(product.id);
 

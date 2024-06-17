@@ -2,14 +2,19 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import heartSolid from "../assets/heart-solid.svg";
 import heartRegular from "../assets/heart-regular.svg";
-import { DataContext } from "../context/DataContext";
 import "../App.css";
+import { useFavorites } from "../context/FavoritesContext";
 
 function ProductDetail() {
 
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
+  const numericId = Number(id);
+
+  const { favoriteIds, toggleFavorite } = useFavorites();
+
+  const isFavorited = favoriteIds.includes(numericId);
 
   const fetchProductDetails = async () => {
     try {
@@ -31,9 +36,7 @@ function ProductDetail() {
     return <div>Error: {error}</div>;
   }
 
-  const { favoriteIds, toggleFavorite } = useContext(DataContext);
 
-  const isFavorited = favoriteIds.includes(id);
   return product ? (
     <div className="product-details-container">
       <div className="title-container">
@@ -47,7 +50,7 @@ function ProductDetail() {
               
            onClick={(e) => {
                 e.preventDefault(); // Prevent link navigation
-                toggleFavorite(id);
+                toggleFavorite(numericId);
               }} >
               {isFavorited ? (
                 <img className="icon-favourite" src={heartSolid} alt="Favorited" />

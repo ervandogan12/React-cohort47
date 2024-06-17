@@ -7,7 +7,7 @@ export const AllProducts = ({ products }) => {
   return (
     <ul className="products">
       {products.map((product) => {
-        return <Product product={product} />;
+        return <Product key={product.id} product={product} />;
       })}
     </ul>
   );

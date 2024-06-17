@@ -1,17 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { DataContext, DataProvider } from './context/DataContext'; // Correct the casing of the import path
-import Nav from './components/Nav';
-import AppRoutes from './Routes'; // Adjust the import path based on where you place your Routes.jsx
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { DataProvider } from "./context/DataContext"; 
+import { FavoritesProvider } from "./context/FavoritesContext";   
+import Nav from "./components/Nav";
+import AppRoutes from "./Routes"; 
 
 function App() {
   return (
-<DataProvider>
-  <Router>
-    <Nav />
-    <AppRoutes />
-  </Router>
-</DataProvider>
+    <DataProvider>
+      <FavoritesProvider>
+        <Router>
+          <Nav />
+          <AppRoutes />
+        </Router>
+      </FavoritesProvider>
+    </DataProvider>
   );
 }
 

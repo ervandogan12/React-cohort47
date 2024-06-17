@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
-import { DataContext } from "../context/DataContext";
+import { useData } from "../context/DataContext";
+import { useFavorites } from '../context/FavoritesContext';
 import Product from "./Product";
 
 function Favourites() {
-  const { favoriteIds, products } = useContext(DataContext);
+  const { products } = useData();
+  const {favoriteIds} = useFavorites();
 
   const favorites = products.filter((product) =>
     favoriteIds.includes(product.id)

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export const DataContext = createContext();
 
-export const useFavorites = () => useContext(DataContext);
+export const useData = () => useContext(DataContext);
 
 export const DataProvider = ({ children }) => {
   const [favoriteIds, setFavoriteIds] = useState(() => {
