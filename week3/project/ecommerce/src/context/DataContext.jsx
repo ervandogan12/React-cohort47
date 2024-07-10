@@ -12,31 +12,36 @@ export const DataProvider = ({ children }) => {
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(true); 
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true); 
   const [categoryState, setCategoryState] = useState(undefined);
   const [error, setError] = useState(null);
 
   const fetchCategories = async () => {
     try {
-      setIsLoading(true);
+     
       const response = await fetch('https://fakestoreapi.com/products/categories');
       const data = await response.json();
       setCategories(data);
-      setIsLoading(false);
+ 
     } catch (error) {
       setError(error.message);
+    }finally{
+      setIsLoadingCategories(false);
     }
   };
 
   const fetchProducts = async (category) => {
     try {
-      setIsLoading(true);
+     
       const response = await fetch(category ? `https://fakestoreapi.com/products/category/${category}` : 'https://fakestoreapi.com/products');
       const data = await response.json();
       setProducts(data);
-      setIsLoading(false);
+      
     } catch (error) {
       setError(error.message);
+    }finally{
+      setIsLoadingProducts(false);
     }
   };
 
@@ -63,7 +68,7 @@ export const DataProvider = ({ children }) => {
   };
 
   return (
-    <DataContext.Provider value={{favoriteIds, toggleFavorite, products, categories, isLoading, categoryState, error, handleCategoryClick}}>
+    <DataContext.Provider value={{favoriteIds, toggleFavorite, products, categories, isLoadingCategories,isLoadingProducts, categoryState, error, handleCategoryClick}}>
       {children}
     </DataContext.Provider>
   );

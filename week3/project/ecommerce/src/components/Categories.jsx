@@ -1,38 +1,45 @@
-import React, { useState, useContext } from "react";
+import React, {useContext } from "react";
 import { DataContext } from "../context/DataContext"; 
-import { useEffect } from "react";
 import { AllProducts } from "./Products";
 import '../App.css';
 
 export const AllCategories = () => {
-  const { products, categories, isLoading, categoryState, error, handleCategoryClick } = useContext(DataContext);
-
+  const { products, categories, isLoadingCategories, categoryState, error, handleCategoryClick, isLoadingProducts } = useContext(DataContext);
 
   if (error) {
     return <div>Error: {error}</div>;
   }
 
   return (
-    isLoading ? <p>Loading...</p> :<>
-      <div className="categories">
-        {Array.isArray(categories) &&
-          categories.map((category, index) => (
-            <div
-            key={index}
-            onClick={() => handleCategoryClick(category)}
-            className={
-              category === categoryState
-                ? "category-item selected-category-item"
-                : "category-item"
-            }
-            >
-              {category}
-            </div>
-          ))}
-      </div>
-      <div>
-        <AllProducts products={products} />
-      </div>
+    <>
+      {isLoadingCategories ? (
+        <p>Loading...</p>
+      ) : (
+        <div className="categories">
+          {Array.isArray(categories) &&
+            categories.map((category, index) => (
+              <div
+                key={index}
+                onClick={() => handleCategoryClick(category)}
+                className={
+                  category === categoryState
+                    ? "category-item selected-category-item"
+                    : "category-item"
+                }
+              >
+                {category}
+              </div>
+            ))}
+        </div>
+      )}
+
+      {isLoadingProducts ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          <AllProducts products={products} />
+        </div>
+      )}
     </>
   );
 };
